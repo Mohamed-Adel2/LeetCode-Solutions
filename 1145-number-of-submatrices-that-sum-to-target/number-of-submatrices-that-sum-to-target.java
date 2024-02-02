@@ -6,19 +6,21 @@ class Solution {
 
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= m; j++)
-                sum[i][j] = sum[i][j - 1] + sum[i - 1][j] - sum[i - 1][j - 1] + matrix[i - 1][j - 1];
+                sum[i][j] = sum[i][j - 1] + matrix[i - 1][j - 1];
+        for (int i = 1; i <= m; i++)
+            for (int j = 1; j <= n; j++)
+                sum[j][i] += sum[j - 1][i];
+
 
         int ans = 0;
         for (int i = 1; i <= n; i++) {
             for (int j = i; j <= n; j++) {
-                Map<Integer, Integer> freq = new HashMap<>();
-                freq.put(0, 1);
-                int currSum = 0;
                 for (int k = 1; k <= m; k++) {
-                    currSum = sum[j][k] - sum[i - 1][k] - sum[j][0] + sum[i - 1][0];
-                    if (freq.containsKey(currSum - target))
-                        ans += freq.get(currSum - target);
-                    freq.put(currSum, freq.getOrDefault(currSum, 0) + 1);
+                    for (int l = k; l <= m; l++) {
+                        int tmp = sum[j][l] - sum[i - 1][l] - sum[j][k - 1] + sum[i - 1][k - 1];
+                        if (tmp == target)
+                            ++ans;
+                    }
                 }
             }
         }
