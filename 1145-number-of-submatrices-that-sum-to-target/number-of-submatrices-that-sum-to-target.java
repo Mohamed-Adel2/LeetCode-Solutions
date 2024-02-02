@@ -1,12 +1,3 @@
-class Main {
-    public static void main(String args[]) {
-        int[][] mat = {{0, 1, 1, 1, 0, 1}, {0, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 0, 1}, {1, 1, 0, 1, 1, 0}, {1, 0, 0, 1, 0, 0}};
-        Solution s = new Solution();
-        System.out.println(s.numSubmatrixSumTarget(mat, 0));
-    }
-
-}
-
 class Solution {
     public int numSubmatrixSumTarget(int[][] matrix, int target) {
         int n = matrix.length;
