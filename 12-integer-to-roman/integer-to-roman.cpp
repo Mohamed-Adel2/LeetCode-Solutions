@@ -1,7 +1,7 @@
 class Solution {
 public:
     string intToRoman(int num) {
-        map<int, char> base, unit;
+        unordered_map<int, char> base, unit;
         base[3] = 'D', base[2] = 'L', base[1] = 'V';
         unit[4] = 'M', unit[3] = 'C', unit[2] = 'X', unit[1] = 'I';
         int curr = 1;
