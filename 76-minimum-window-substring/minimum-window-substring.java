@@ -15,14 +15,14 @@ class Solution {
                 ++found;
             if (found == distinct) {
                 while (found == distinct) {
-                    if (endIdx - startIdx > ptr2 - ptr1) {
-                        startIdx = ptr1;
-                        endIdx = ptr2;
-                    }
                     --sFreq[s.charAt(ptr1)];
                     if (sFreq[s.charAt(ptr1)] < tFreq[s.charAt(ptr1)])
                         --found;
                     ++ptr1;
+                }
+                if (endIdx - startIdx > ptr2 - ptr1 + 1) {
+                    startIdx = ptr1 - 1;
+                    endIdx = ptr2;
                 }
             }
             ++ptr2;
