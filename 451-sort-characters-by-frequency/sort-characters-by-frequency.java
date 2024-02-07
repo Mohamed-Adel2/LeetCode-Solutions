@@ -1,9 +1,8 @@
 class Solution {
     public String frequencySort(String s) {
         HashMap<Character, Integer> freq = new HashMap<>();
-        for (char c : s.toCharArray()) {
+        for (char c : s.toCharArray())
             freq.put(c, freq.getOrDefault(c, 0) + 1);
-        }
         StringBuilder ans = new StringBuilder();
         char ch = 'a';
         int cnt;
