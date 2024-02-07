@@ -1,25 +1,21 @@
 class Solution {
     public String frequencySort(String s) {
-        HashMap<Character, Integer> freq = new HashMap<>();
-        for (char c : s.toCharArray())
-            freq.put(c, freq.getOrDefault(c, 0) + 1);
+        int[] freq = new int[123];
+        for (int i = 0; i < s.length(); i++)
+            ++freq[s.charAt(i)];
         StringBuilder ans = new StringBuilder();
-        char ch = 'a';
-        int cnt;
-        int sz = freq.size();
-        for (int i = 0; i < sz; i++) {
-            cnt = 0;
-            for (Map.Entry<Character, Integer> e : freq.entrySet()) {
-                if (e.getValue() > cnt) {
-                    ch = e.getKey();
-                    cnt = e.getValue();
-                }
+        while (true) {
+            char ch = '-';
+            for (int i = '0'; i <= 'z'; i++) {
+                if (freq[i] > freq[ch])
+                    ch = (char) i;
             }
-            if (cnt == 0)
+            if (ch == '-')
                 break;
-            for (int c = 0; c < cnt; c++)
+            while (freq[ch] > 0) {
+                --freq[ch];
                 ans.append(ch);
-            freq.remove(ch);
+            }
         }
         return ans.toString();
     }
