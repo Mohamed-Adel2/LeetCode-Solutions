@@ -42,21 +42,20 @@ public:
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
                 if (trie.root->child[board[i][j] - 'a'] != NULL)
-                    solve(board, trie.root->child[board[i][j] - 'a'], i, j);
+                    dfs(board, trie.root->child[board[i][j] - 'a'], i, j);
         for (int i = 0; i < words.size(); i++)
             if (exists[i])
                 ans.push_back(words[i]);
         return ans;
     }
 
-    void solve(vector<vector<char>> &board, TrieNode *node, int row, int col) {
+    void dfs(vector<vector<char>> &board, TrieNode *node, int row, int col) {
         visited[row][col] = true;
         if (~node->endsHere)
             exists[node->endsHere] = true;
         for (int i = 0; i < 4; i++)
             if (valid(row + dx[i], col + dy[i]) && node->child[board[row + dx[i]][col + dy[i]] - 'a'] != NULL)
-                solve(board, node->child[board[row + dx[i]][col + dy[i]] - 'a'], row + dx[i], col + dy[i]);
-
+                dfs(board, node->child[board[row + dx[i]][col + dy[i]] - 'a'], row + dx[i], col + dy[i]);
         visited[row][col] = false;
     }
 
