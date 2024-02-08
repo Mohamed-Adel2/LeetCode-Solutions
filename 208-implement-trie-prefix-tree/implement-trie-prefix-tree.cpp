@@ -1,13 +1,7 @@
 class TrieNode {
 public:
-    vector<TrieNode *> v;
-    bool endsHere;
-
-    TrieNode() {
-        endsHere = false;
-        v.resize(26);
-    }
-
+    TrieNode *child[26];
+    bool endsHere = false;
 };
 
 class Trie {
@@ -21,9 +15,9 @@ public:
     void insert(string word) {
         TrieNode *node = root;
         for (char c: word) {
-            if (node->v[c - 'a'] == NULL)
-                node->v[c - 'a'] = new TrieNode();
-            node = node->v[c - 'a'];
+            if (node->child[c - 'a'] == NULL)
+                node->child[c - 'a'] = new TrieNode();
+            node = node->child[c - 'a'];
         }
         node->endsHere = true;
     }
@@ -31,9 +25,9 @@ public:
     bool search(string word) {
         TrieNode *node = root;
         for (char c: word) {
-            if (node->v[c - 'a'] == NULL)
+            if (node->child[c - 'a'] == NULL)
                 return false;
-            node = node->v[c - 'a'];
+            node = node->child[c - 'a'];
         }
         return node->endsHere;
     }
@@ -41,9 +35,9 @@ public:
     bool startsWith(string prefix) {
         TrieNode *node = root;
         for (char c: prefix) {
-            if (node->v[c - 'a'] == NULL)
+            if (node->child[c - 'a'] == NULL)
                 return false;
-            node = node->v[c - 'a'];
+            node = node->child[c - 'a'];
         }
         return true;
     }
