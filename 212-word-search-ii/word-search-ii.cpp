@@ -28,12 +28,10 @@ public:
     vector<bool> exists;
     vector<string> ans;
     int n, m;
-    vector<vector<bool>> visited;
     vector<int> dx, dy;
 
     vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
         exists.resize(words.size()), n = board.size(), m = board[0].size();
-        visited.resize(n, vector<bool>(m));
         dx = {0, 0, 1, -1};
         dy = {1, -1, 0, 0};
         Trie trie;
@@ -49,17 +47,19 @@ public:
         return ans;
     }
 
-    void dfs(vector<vector<char>> &board, TrieNode *node, int row, int col) {
-        visited[row][col] = true;
+    void dfs(vector<vector<char>> &board, TrieNode *&node, int row, int col) {
+        char c = board[row][col];
+        board[row][col] = '#';
         if (~node->endsHere)
             exists[node->endsHere] = true;
         for (int i = 0; i < 4; i++)
-            if (valid(row + dx[i], col + dy[i]) && node->child[board[row + dx[i]][col + dy[i]] - 'a'] != NULL)
+            if (valid(row + dx[i], col + dy[i]) && board[row + dx[i]][col + dy[i]] != '#' &&
+                node->child[board[row + dx[i]][col + dy[i]] - 'a'] != NULL)
                 dfs(board, node->child[board[row + dx[i]][col + dy[i]] - 'a'], row + dx[i], col + dy[i]);
-        visited[row][col] = false;
+        board[row][col] = c;
     }
 
     bool valid(int x, int y) {
-        return (x >= 0 && x < n && y >= 0 && y < m && !visited[x][y]);
+        return (x >= 0 && x < n && y >= 0 && y < m);
     }
 };
