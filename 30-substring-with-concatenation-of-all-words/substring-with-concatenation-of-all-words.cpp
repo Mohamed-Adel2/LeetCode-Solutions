@@ -46,11 +46,11 @@ public:
             return ans;
         Trie trie;
         unordered_map<TrieNode *, int> freq;
-        vector<TrieNode *> endpoints(words.size());
+        set<TrieNode *> endpoints;
         for (int i = 0; i < words.size(); ++i) {
             TrieNode *node = trie.insert(words[i]);
             ++freq[node];
-            endpoints[i] = node;
+            endpoints.insert(node);
         }
         int windowLen = words.size() * words[0].size(), wordLen = words[0].size();
         for (int i = 0; i + windowLen - 1 < s.size(); ++i) {
