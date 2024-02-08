@@ -1,7 +1,8 @@
 class TrieNode {
 public:
     TrieNode *child[26];
-    int endsHere = -1;
+    string word;
+    bool endsHere = false;
 };
 
 class Trie {
@@ -19,19 +20,19 @@ public:
                 node->child[c - 'a'] = new TrieNode();
             node = node->child[c - 'a'];
         }
-        node->endsHere = idx;
+        node->endsHere = true;
+        node->word = word;
     }
 };
 
 class Solution {
 public:
-    vector<bool> exists;
     vector<string> ans;
     int n, m;
     vector<int> dx, dy;
 
     vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
-        exists.resize(words.size()), n = board.size(), m = board[0].size();
+        n = board.size(), m = board[0].size();
         dx = {0, 0, 1, -1};
         dy = {1, -1, 0, 0};
         Trie trie;
@@ -41,17 +42,16 @@ public:
             for (int j = 0; j < m; j++)
                 if (trie.root->child[board[i][j] - 'a'] != NULL)
                     dfs(board, trie.root->child[board[i][j] - 'a'], i, j);
-        for (int i = 0; i < words.size(); i++)
-            if (exists[i])
-                ans.push_back(words[i]);
         return ans;
     }
 
     void dfs(vector<vector<char>> &board, TrieNode *&node, int row, int col) {
         char c = board[row][col];
         board[row][col] = '#';
-        if (~node->endsHere)
-            exists[node->endsHere] = true;
+        if (node->endsHere) {
+            ans.push_back(node->word);
+            node->endsHere = false;
+        }
         for (int i = 0; i < 4; i++)
             if (valid(row + dx[i], col + dy[i]) && board[row + dx[i]][col + dy[i]] != '#' &&
                 node->child[board[row + dx[i]][col + dy[i]] - 'a'] != NULL)
