@@ -34,6 +34,8 @@ public:
                 for (int child = 0; child < 26; child++) {
                     if (node->child[child] != NULL)
                         canComplete |= startFromHere(node->child[child], s, i + 1);
+                    if(canComplete)
+                        return canComplete;
                 }
                 return canComplete;
             } else {
