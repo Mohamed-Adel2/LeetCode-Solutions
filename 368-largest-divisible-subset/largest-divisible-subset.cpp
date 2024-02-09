@@ -6,7 +6,7 @@ public:
     int n;
 
     vector<int> largestDivisibleSubset(vector<int> &num) {
-        this->nums = num;
+        nums = num;
         nums.push_back(1);
         sort(nums.begin(), nums.end());
         n = nums.size();
