@@ -22,10 +22,10 @@ public:
         ret = 0;
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                int newr = r + 1, newc1 = c1 + dy[i], newc2 = c2 + dy[j];
+                int newc1 = c1 + dy[i], newc2 = c2 + dy[j];
                 if (valid(newc1, newc2))
-                    ret = max(ret,
-                              solve(newr, newc1, newc2) + grid[newr][newc1] + (newc1 == newc2 ? 0 : grid[newr][newc2]));
+                    ret = max(ret, solve(r + 1, newc1, newc2) + grid[r + 1][newc1] +
+                                   (newc1 == newc2 ? 0 : grid[r + 1][newc2]));
             }
         return ret;
     }
