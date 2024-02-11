@@ -10,7 +10,7 @@ public:
     int countPalindrome(string &s, int idx, bool even) {
         int l = idx - even, r = idx;
         while (l >= 0 && r < s.size()) {
-            if (s[l] != s[r])
+            if (s[r] != s[l])
                 break;
             --l, ++r;
         }
