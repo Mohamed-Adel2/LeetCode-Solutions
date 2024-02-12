@@ -18,7 +18,7 @@ public:
     }
 
     bool valid(vector<vector<int>> &matrix, int row, int col) {
-        return (row >= 0 && row < n && col >= 0 && col < m && matrix[row][col]!=-101);
+        return (row >= 0 && row < n && col >= 0 && col < m && matrix[row][col]!= -101);
     }
 
     void changeDir() {
