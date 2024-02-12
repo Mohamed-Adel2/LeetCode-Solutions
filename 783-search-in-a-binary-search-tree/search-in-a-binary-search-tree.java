@@ -13,9 +13,9 @@ class Solution {
             ans = node;
             return;
         }
-        dfs(node.right, val);
-        if(ans != null)
-            return;
-        dfs(node.left, val);
+        if(node.val < val)
+            dfs(node.right, val);
+        else
+            dfs(node.left, val);
     }
 }
