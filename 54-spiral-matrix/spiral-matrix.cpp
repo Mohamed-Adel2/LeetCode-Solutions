@@ -6,7 +6,7 @@ public:
     vector<int> spiralOrder(vector<vector<int>> &matrix) {
         dir = 'R';
         dx = 0, dy = 1, currX = 0, currY = -1, n = matrix.size(), m = matrix[0].size();
-        vector<vector<int>> vis(n, vector<int>(m));
+        vector<vector<bool>> vis(n, vector<bool>(m));
         vector<int> ans;
         for (int i = 0; i < n * m; ++i) {
             if (!valid(vis, currX + dx, currY + dy))
@@ -18,7 +18,7 @@ public:
         return ans;
     }
 
-    bool valid(vector<vector<int>> &vis, int row, int col) {
+    bool valid(vector<vector<bool>> &vis, int row, int col) {
         return (row >= 0 && row < n && col >= 0 && col < m && !vis[row][col]);
     }
 
