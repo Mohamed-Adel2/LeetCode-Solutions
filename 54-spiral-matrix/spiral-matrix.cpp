@@ -6,20 +6,19 @@ public:
     vector<int> spiralOrder(vector<vector<int>> &matrix) {
         dir = 'R';
         dx = 0, dy = 1, currX = 0, currY = -1, n = matrix.size(), m = matrix[0].size();
-        vector<vector<bool>> vis(n, vector<bool>(m));
         vector<int> ans;
         for (int i = 0; i < n * m; ++i) {
-            if (!valid(vis, currX + dx, currY + dy))
+            if (!valid(matrix, currX + dx, currY + dy))
                 changeDir();
             currX += dx, currY += dy;
-            vis[currX][currY] = true;
             ans.push_back(matrix[currX][currY]);
+            matrix[currX][currY] = -101;
         }
         return ans;
     }
 
-    bool valid(vector<vector<bool>> &vis, int row, int col) {
-        return (row >= 0 && row < n && col >= 0 && col < m && !vis[row][col]);
+    bool valid(vector<vector<int>> &matrix, int row, int col) {
+        return (row >= 0 && row < n && col >= 0 && col < m && matrix[row][col]!=-101);
     }
 
     void changeDir() {
