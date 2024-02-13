@@ -1,6 +1,7 @@
 class Solution {
 public:
     int longestConsecutive(vector<int> &nums) {
+        
         unordered_map<int, int> freq;
         unordered_map<int, bool> vis;
         int ans = 0;
