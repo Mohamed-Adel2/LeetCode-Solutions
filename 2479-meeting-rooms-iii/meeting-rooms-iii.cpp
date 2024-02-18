@@ -3,38 +3,30 @@ public:
     int mostBooked(int n, vector<vector<int>> &meetings) {
         sort(meetings.begin(), meetings.end());
         vector<int> freq(n);
-        set<pair<long long, long long>> availableRooms, unavailableRooms;
-        for (int i = 0; i < n; ++i)
-            availableRooms.insert({i, 0});
+        vector<long long> availableAt(n);
         for (int i = 0; i < meetings.size(); ++i) {
-            while (!unavailableRooms.empty() && unavailableRooms.begin()->first < meetings[i][0]) {
-                int node = unavailableRooms.begin()->second;
-                unavailableRooms.erase(unavailableRooms.begin());
-                availableRooms.insert({node, meetings[i][0]});
-            }
-            if (availableRooms.empty()) {
-                long long val = unavailableRooms.begin()->first;
-                while (!unavailableRooms.empty() && unavailableRooms.begin()->first == val) {
-                    int node = unavailableRooms.begin()->second;
-                    long long time = unavailableRooms.begin()->first;
-                    availableRooms.insert({node, time + 1});
-                    unavailableRooms.erase(unavailableRooms.begin());
+            bool done = false;
+            for (int j = 0; j < n; ++j) {
+                if (availableAt[j] <= meetings[i][0]) {
+                    done = true;
+                    availableAt[j] = meetings[i][1], ++freq[j];
+                    break;
                 }
             }
-            pair<long long, long long> el = *availableRooms.begin();
-            availableRooms.erase(availableRooms.begin());
-            ++freq[el.first];
-            unavailableRooms.insert(
-                    {max(el.second + meetings[i][1] - meetings[i][0] - 1, (long long)meetings[i][1] - 1), el.first});
-
-        }
-        int mxFreq = 0, mxEl = 101;
-        for (int i = 0; i < n; ++i) {
-            if (freq[i] > mxFreq) {
-                mxEl = i;
-                mxFreq = freq[i];
+            if (!done) {
+                int room = 0;
+                for (int j = 1; j < n; ++j) {
+                    if (availableAt[room] > availableAt[j])
+                        room = j;
+                }
+                ++freq[room];
+                availableAt[room] = availableAt[room] + meetings[i][1] - meetings[i][0];
             }
         }
+        int mxEl = 0;
+        for (int i = 1; i < n; ++i)
+            if (freq[i] > freq[mxEl]) 
+                mxEl = i;
         return mxEl;
     }
 };
