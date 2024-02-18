@@ -25,7 +25,7 @@ public:
         }
         int mxEl = 0;
         for (int i = 1; i < n; ++i)
-            if (freq[i] > freq[mxEl]) 
+            if (freq[mxEl] < freq[i]) 
                 mxEl = i;
         return mxEl;
     }
