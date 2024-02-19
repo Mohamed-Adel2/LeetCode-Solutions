@@ -13,7 +13,7 @@ public:
         if (postStart > postEnd)
             return NULL;
         int val = postorder[postEnd];
-        TreeNode *node = new TreeNode(val);
+        TreeNode *node = new TreeNode(postorder[postEnd]);
         if (postStart == postEnd)
             return node;
         int sz = idx[val] - inStart;
