@@ -8,8 +8,9 @@ public:
     }
 
     void solve(TreeNode *node, int pathSum) {
-        if (!node->right && !node->left)
+        if (!node->right && !node->left) {
             totalSum += (pathSum * 10) + node->val;
+        }
         if (node->right)
             solve(node->right, pathSum * 10 + node->val);
         if (node->left)
