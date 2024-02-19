@@ -12,11 +12,13 @@ public:
     TreeNode *solve(vector<int> &preorder, vector<int> &inorder, int preStart, int preEnd, int inStart, int inEnd) {
         if (preStart > preEnd)
             return NULL;
+        int val = preorder[preStart];
         TreeNode *node = new TreeNode(preorder[preStart]);
         if (preStart == preEnd)
             return node;
-        node->left = solve(preorder, inorder, preStart + 1, preStart + idx[preorder[preStart]] - inStart, inStart, idx[preorder[preStart]] - 1);
-        node->right = solve(preorder, inorder, preStart + 1 + idx[preorder[preStart]] - inStart, preEnd, idx[preorder[preStart]] + 1, inEnd);
+        int sz = idx[val] - inStart;
+        node->left = solve(preorder, inorder, preStart + 1, preStart + sz, inStart, idx[val] - 1);
+        node->right = solve(preorder, inorder, preStart + 1 + sz, preEnd, idx[val] + 1, inEnd);
         return node;
     }
 };
