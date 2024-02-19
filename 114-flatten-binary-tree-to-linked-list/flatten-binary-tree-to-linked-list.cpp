@@ -7,9 +7,9 @@ public:
             return;
         flatten(root->right);
         flatten(root->left);
+        root->left = NULL;
         if (last)
             root->right = last;
-        root->left = NULL;
         last = root;
     }
 };
