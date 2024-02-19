@@ -3,11 +3,11 @@ public:
     TreeNode *last;
 
     void flatten(TreeNode *root) {
-        if (root == NULL)
+        if (!root)
             return;
         flatten(root->right);
         flatten(root->left);
-        if (last != NULL)
+        if (last)
             root->right = last;
         root->left = NULL;
         last = root;
