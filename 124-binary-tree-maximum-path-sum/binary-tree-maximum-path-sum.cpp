@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int ans = -100000000;
+    int ans = INT32_MIN;
 
     int maxPathSum(TreeNode *root) {
         dfs(root);
