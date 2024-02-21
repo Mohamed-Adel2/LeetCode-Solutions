@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode *root) {
         vector<vector<int>> ans;
-        if(!root)
+        if(root == NULL)
             return ans;
         queue<pair<TreeNode *, int>> q;
         q.push({root, 1});
