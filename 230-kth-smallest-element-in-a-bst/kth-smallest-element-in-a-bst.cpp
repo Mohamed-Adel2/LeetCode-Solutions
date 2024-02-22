@@ -13,8 +13,7 @@ public:
         dfs(node->left, k);
         --k;
         if (k == 0)
-        ans = node->val;
+            ans = node->val;
         dfs(node->right, k);
-
     }
 };
