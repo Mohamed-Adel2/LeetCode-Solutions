@@ -1,19 +1,20 @@
 class Solution {
 public:
-    multiset<int> ms;
+    int ans = 0;
 
     int kthSmallest(TreeNode *root, int k) {
         dfs(root, k);
-        return *ms.rbegin();
+        return ans;
     }
 
-    void dfs(TreeNode *node, int k) {
+    void dfs(TreeNode *node, int &k) {
         if (!node)
             return;
-        ms.insert(node->val);
-        if (ms.size() > k)
-            ms.erase(--ms.end());
         dfs(node->left, k);
+        --k;
+        if (k == 0)
+        ans = node->val;
         dfs(node->right, k);
+
     }
 };
