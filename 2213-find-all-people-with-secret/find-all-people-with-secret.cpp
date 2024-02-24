@@ -1,3 +1,4 @@
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
     vector<int> ans;
