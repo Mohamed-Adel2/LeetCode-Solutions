@@ -25,7 +25,7 @@ public:
             ans.push_back(node);
             vis[node] = true;
             for (auto i: adj[node]) {
-                if (i.second >= time)
+                if (i.second >= time && !vis[i.first])
                     q.push({i.second, i.first});
             }
         }
