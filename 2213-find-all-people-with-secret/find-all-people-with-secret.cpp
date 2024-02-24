@@ -1,19 +1,18 @@
 class Solution {
 public:
     vector<int> ans;
-    vector<vector<pair<int, int>>> adj;
 
     vector<int> findAllPeople(int n, vector<vector<int>> &meetings, int firstPerson) {
-        adj.resize(n);
+        vector<vector<pair<int, int>>> adj(n);
         for (int i = 0; i < meetings.size(); ++i){
             adj[meetings[i][0]].push_back({meetings[i][1], meetings[i][2]});
             adj[meetings[i][1]].push_back({meetings[i][0], meetings[i][2]});
         }
-        dijkstra(firstPerson, n);
+        dijkstra(firstPerson, n, adj);
         return ans;
     }
 
-    void dijkstra(int start, int n) {
+    void dijkstra(int start, int n, vector<vector<pair<int, int>>>& adj) {
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
         q.push({0, start});
         q.push({0, 0});
