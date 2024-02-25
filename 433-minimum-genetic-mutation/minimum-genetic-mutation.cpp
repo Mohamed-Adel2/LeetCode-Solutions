@@ -1,20 +1,18 @@
 class Solution {
 public:
     int minMutation(string startGene, string endGene, vector<string> &bank) {
-        queue<pair<int, int>> q;
-        int n = bank.size();
-        vector<bool> vis(n);
-        q.push({-1, 0});
+        queue<pair<string, int>> q;
+        vector<bool> vis(bank.size());
+        q.push({startGene, 0});
         while (!q.empty()) {
-            int idx = q.front().first;
+            string currGene = q.front().first;
             int mutations = q.front().second;
-            string currGene = (idx != -1 ? bank[idx] : startGene);
             q.pop();
             if (currGene == endGene)
                 return mutations;
-            for (int i = 0; i < n; ++i) {
+            for (int i = 0; i < bank.size(); ++i) {
                 if (!vis[i] && onlyOneDifference(currGene, bank[i])) {
-                    q.push({i, mutations + 1}), vis[i] = true;
+                    q.push({bank[i], mutations + 1}), vis[i] = true;
                 }
             }
         }
