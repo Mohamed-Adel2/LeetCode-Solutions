@@ -5,6 +5,10 @@ public:
         vector<int> inDegree(numCourses);
         for (int i = 0; i < prerequisites.size(); ++i)
             adj[prerequisites[i][1]].emplace_back(prerequisites[i][0]), ++inDegree[prerequisites[i][0]];
+        return topologicalSort(numCourses, inDegree, adj);
+    }
+
+    bool topologicalSort(int &numCourses, vector<int> &inDegree, vector<vector<int>> &adj) {
         queue<int> topSort;
         for (int i = 0; i < numCourses; ++i)
             if (!inDegree[i])
