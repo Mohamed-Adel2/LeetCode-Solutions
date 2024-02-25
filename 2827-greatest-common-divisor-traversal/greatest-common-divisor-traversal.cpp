@@ -1,6 +1,7 @@
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
-    vector<int> par, sz, comp;
+    vector<int> par, sz, spf;
 
     bool canTraverseAllPairs(vector<int> &nums) {
         int n = nums.size();
@@ -20,21 +21,21 @@ public:
     }
 
     void sieve(int n) {
-        comp.resize(n + 2);
+        spf.resize(n + 2);
         for (int i = 2; i <= n; ++i)
-            comp[i] = i;
-        comp[0] = comp[1] = -1;
+            spf[i] = i;
+        spf[0] = spf[1] = -1;
         for (int i = 2; i <= n / i; i++)
-            if (comp[i] == i)
+            if (spf[i] == i)
                 for (int j = i * i; j <= n; j += i)
-                    if (comp[j] == j)
-                        comp[j] = i;
+                    if (spf[j] == j)
+                        spf[j] = i;
     }
 
     vector<int> factorize(int n) {
         vector<int> v;
         while (n > 1) {
-            int cur = comp[n];
+            int cur = spf[n];
             while (n % cur == 0)
                 n /= cur;
             v.emplace_back(cur);
