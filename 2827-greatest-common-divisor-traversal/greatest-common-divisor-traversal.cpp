@@ -1,11 +1,12 @@
 class Solution {
 public:
-    vector<int> par, sz;
+    vector<int> par, sz, comp;
 
     bool canTraverseAllPairs(vector<int> &nums) {
         int n = nums.size();
+        sort(nums.begin(), nums.end());
+        sieve(nums.back()), init(n);
         unordered_map<int, int> freq;
-        init(n);
         for (int idx = 0; idx < n; ++idx) {
             vector<int> factors = factorize(nums[idx]);
             for (int i = 0; i < factors.size(); ++i) {
@@ -18,18 +19,27 @@ public:
         return sz[find(0)] == n;
     }
 
-    vector<int> factorize(int num) {
-        vector<int> ans;
-        for (int i = 2; i * i <= num; ++i) {
-            if (num % i == 0) {
-                ans.emplace_back(i);
-                while (num % i == 0)
-                    num /= i;
-            }
+    void sieve(int n) {
+        comp.resize(n + 2);
+        for (int i = 2; i <= n; ++i)
+            comp[i] = i;
+        comp[0] = comp[1] = -1;
+        for (int i = 2; i <= n / i; i++)
+            if (comp[i] == i)
+                for (int j = i * i; j <= n; j += i)
+                    if (comp[j] == j)
+                        comp[j] = i;
+    }
+
+    vector<int> factorize(int n) {
+        vector<int> v;
+        while (n > 1) {
+            int cur = comp[n];
+            while (n % cur == 0)
+                n /= cur;
+            v.emplace_back(cur);
         }
-        if (num > 1)
-            ans.push_back(num);
-        return ans;
+        return v;
     }
 
     void init(int n) {
