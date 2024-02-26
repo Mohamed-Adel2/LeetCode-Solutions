@@ -33,6 +33,6 @@ public:
     }
 
     bool valid(int sz, int idx) {
-        return (idx < sz && idx >= 0);
+        return (idx >= 0 && idx < sz);
     }
 };
