@@ -3,11 +3,9 @@ public:
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
         int sz1 = nums1.size(), sz2 = nums2.size();
         if (!sz1)
-            return (sz2 & 1 ? (double) nums2[sz2 / 2] :
-                    (double) (nums2[sz2 / 2] + nums2[sz2 / 2 - 1]) / 2);
+            return (sz2 & 1 ? (double) nums2[sz2 / 2] : (double) (nums2[sz2 / 2] + nums2[sz2 / 2 - 1]) / 2);
         if (!sz2)
-            return (sz1 & 1 ? (double) nums1[sz1 / 2] :
-                    (double) (nums1[sz1 / 2] + nums1[sz1 / 2 - 1]) / 2);
+            return (sz1 & 1 ? (double) nums1[sz1 / 2] : (double) (nums1[sz1 / 2] + nums1[sz1 / 2 - 1]) / 2);
         int sz = sz1 + sz2, target = (sz + 1) / 2;
         int lo = max(0, target - sz2 - 1), hi = min(target, sz1) - 1;
         int left = -1, right = -1;
