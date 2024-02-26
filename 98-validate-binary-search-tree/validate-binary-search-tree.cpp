@@ -9,7 +9,7 @@ public:
     }
 
     void dfs(TreeNode *node) {
-        if (!node)
+        if (!node || !valid)
             return;
         dfs(node->left);
         if (!first && node->val <= last) {
