@@ -1,7 +1,7 @@
 class Solution {
 public:
-    unordered_map<int, Node *> mp;
-    unordered_map<int, bool> vis;
+    map<int, Node *> mp;
+    map<int, bool> vis;
 
     Node *cloneGraph(Node *node) {
         if (!node)
