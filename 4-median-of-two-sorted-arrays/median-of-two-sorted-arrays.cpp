@@ -1,3 +1,4 @@
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
