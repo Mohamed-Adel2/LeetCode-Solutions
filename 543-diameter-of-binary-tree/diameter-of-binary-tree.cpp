@@ -8,7 +8,7 @@ public:
     }
 
     int solve(TreeNode *node) {
-        if (!node)
+        if (node == nullptr)
             return 0;
         int left = solve(node->left), right = solve(node->right);
         ans = max(ans, left + right + 1);
