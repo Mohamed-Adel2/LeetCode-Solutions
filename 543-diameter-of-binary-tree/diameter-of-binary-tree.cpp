@@ -4,14 +4,14 @@ public:
 
     int diameterOfBinaryTree(TreeNode *root) {
         solve(root);
-        return ans;
+        return ans - 1;
     }
 
     int solve(TreeNode *node) {
-        if (node == NULL)
+        if (!node)
             return 0;
         int left = solve(node->left), right = solve(node->right);
-        ans = max(ans, left + right);
+        ans = max(ans, left + right + 1);
         return max(left, right) + 1;
     }
 };
