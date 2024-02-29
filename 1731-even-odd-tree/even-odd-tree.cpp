@@ -2,9 +2,10 @@ class Solution {
 public:
     bool isEvenOddTree(TreeNode *root) {
         queue<pair<TreeNode *, int>> q;
+        pair<TreeNode*, int> top;
         q.push({root, 0});
         while (!q.empty()) {
-            pair<TreeNode *, int> top = q.front();
+            top = q.front();
             q.pop();
             if (((top.second & 1) && (top.first->val & 1)) ||
                 ((top.second & 1) && !q.empty() && q.front().second == top.second && q.front().first->val <= top.first->val))
