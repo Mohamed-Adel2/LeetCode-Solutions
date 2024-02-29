@@ -11,10 +11,9 @@ public:
             for (int col = 0; col < m; ++col) {
                 if (board[row][col] != word[0])
                     continue;
-                char ch = board[row][col];
                 board[row][col] = '-';
                 solve(board, exist, word, 1, row, col);
-                board[row][col] = ch;
+                board[row][col] = word[0];
                 if (exist)
                     return true;
             }
@@ -28,10 +27,9 @@ public:
         for (int i = 0; i < 4; ++i) {
             int newRow = row + dx[i], newCol = col + dy[i];
             if (valid(newRow, newCol) && board[newRow][newCol] == word[idx]) {
-                char ch = board[newRow][newCol];
                 board[newRow][newCol] = '-';
                 solve(board, exist, word, idx + 1, newRow, newCol);
-                board[newRow][newCol] = ch;
+                board[newRow][newCol] = word[idx];
                 if (exist)
                     return;
             }
