@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<vector<char>> board;
-    vector<vector<bool>> vis;
     int n, m;
     vector<int> dx, dy;
 
@@ -11,13 +10,13 @@ public:
         n = b.size(), m = b[0].size();
         dx = {1, -1, 0, 0}, dy = {0, 0, 1, -1};
         string curr;
-        vis.resize(n, vector<bool>(m));
         for (int row = 0; row < n; ++row) {
             for (int col = 0; col < m; ++col) {
-                vis[row][col] = true;
+                char ch = board[row][col];
                 curr.push_back(board[row][col]);
+                board[row][col] = '-';
                 solve(exist, word, curr, word.size() - 1, row, col);
-                vis[row][col] = false;
+                board[row][col] = ch;
                 curr.pop_back();
                 if (exist)
                     return true;
@@ -28,24 +27,25 @@ public:
 
     void solve(bool &exist, string &word, string &curr, int sz, int row, int col) {
         if (sz == 0) {
-            exist |= (word == curr);
+            exist = (word == curr);
             return;
         }
         for (int i = 0; i < 4; ++i) {
             int newRow = row + dx[i], newCol = col + dy[i];
             if (valid(newRow, newCol)) {
                 curr.push_back(board[newRow][newCol]);
-                vis[newRow][newCol] = true;
+                char ch = board[newRow][newCol];
+                board[newRow][newCol] = '-';
                 solve(exist, word, curr, sz - 1, newRow, newCol);
-                vis[newRow][newCol] = false;
+                board[newRow][newCol] = ch;
                 curr.pop_back();
-                if(exist)
+                if (exist)
                     return;
             }
         }
     }
 
     bool valid(int row, int col) {
-        return (row >= 0 && row < n && col >= 0 && col < m && !vis[row][col]);
+        return (row >= 0 && row < n && col >= 0 && col < m && board[row][col] != '-');
     }
 };
