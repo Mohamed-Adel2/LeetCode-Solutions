@@ -20,10 +20,10 @@ public:
                 vis[row][col] = false;
                 curr.pop_back();
                 if (exist)
-                    break;
+                    return true;
             }
         }
-        return exist;
+        return false;
     }
 
     void solve(bool &exist, string &word, string &curr, int sz, int row, int col) {
