@@ -3,10 +3,12 @@ public:
     bool hasCycle(ListNode *head) {
         if(!head)
             return false;
-        while (head->next) {
-            if (head->next->val == -1e6)
+        ListNode* slow = head, *fast = head;
+        while (fast->next && fast->next->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if(fast == slow)
                 return true;
-            head->val = -1e6, head = head->next;
         }
         return false;
     }
