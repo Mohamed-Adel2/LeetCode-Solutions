@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> sortedSquares(vector<int> &nums) {
-        int negPtr = 0, posPtr = nums.size() - 1;
         vector<int> ret;
+        int negPtr = 0, posPtr = nums.size() - 1;
         while (negPtr <= posPtr) {
             if (abs(nums[negPtr]) > abs(nums[posPtr]))
                 ret.emplace_back(nums[negPtr] * nums[negPtr++]);
