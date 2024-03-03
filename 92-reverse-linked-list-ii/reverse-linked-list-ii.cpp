@@ -12,7 +12,7 @@ public:
                 rightNode = node->next, aftRight = node->next->next;
             node = node->next;
         }
-        if (befLeft && befLeft->val != -1)
+        if (befLeft && befLeft->val != -501)
             befLeft->next = rightNode;
         ListNode *first = leftNode, *second = leftNode->next, *tmp;
         while (first != rightNode && first) {
@@ -21,7 +21,6 @@ public:
             first = second;
             second = tmp;
         }
-
         leftNode->next = aftRight;
         return (left != 1 ? head : rightNode);
     }
