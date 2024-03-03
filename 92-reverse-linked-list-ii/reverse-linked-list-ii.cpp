@@ -2,7 +2,7 @@ class Solution {
 public:
     ListNode *reverseBetween(ListNode *head, int left, int right) {
         int cnt = 0;
-        ListNode *befLeft = NULL, *aftRight = NULL, *rightNode, *leftNode, *node = new ListNode(-1);
+        ListNode *befLeft = NULL, *aftRight = NULL, *rightNode, *leftNode, *node = new ListNode(-501);
         node->next = head;
         while (node) {
             ++cnt;
