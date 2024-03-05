@@ -7,7 +7,7 @@ public:
                 char ch = s[left];
                 while (left <= right && s[left] == ch)
                     ++left;
-                while (right >= left && s[right] == ch)
+                while (left <= right && s[right] == ch)
                     --right;
             } else
                 break;
