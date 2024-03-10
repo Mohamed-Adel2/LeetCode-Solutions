@@ -19,8 +19,8 @@ public:
                 node->next = NULL;
                 break;
             }
-            node = node->next;
             ++cnt;
+            node = node->next;
         }
         return tail;
     }
