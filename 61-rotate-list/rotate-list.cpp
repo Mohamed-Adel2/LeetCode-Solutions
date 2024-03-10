@@ -15,12 +15,10 @@ public:
         tail->next = head;
         while (node) {
             if (cnt == sz - k - 1) {
-                tail = node->next;
-                node->next = NULL;
+                tail = node->next, node->next = NULL;
                 break;
             }
-            node = node->next;
-            ++cnt;
+            node = node->next, ++cnt;
         }
         return tail;
     }
