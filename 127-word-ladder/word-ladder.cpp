@@ -2,6 +2,9 @@ class Solution {
 public:
     int ladderLength(string start, string end, vector<string> &list) {
         queue<pair<string, int>> q;
+        unordered_map<string, bool> freq;
+        for (int i = 0; i < list.size(); ++i)
+            freq[list[i]] = true;
         vector<bool> vis(list.size());
         q.push({start, 0});
         while (!q.empty()) {
@@ -10,23 +13,18 @@ public:
             q.pop();
             if (curr == end)
                 return dist + 1;
-            for (int i = 0; i < list.size(); ++i) {
-                if (!vis[i] && differByOne(curr, list[i]))
-                    vis[i] = true, q.push({list[i], dist + 1});
+            for (int i = 0; i < curr.size(); ++i) {
+                for (char ch = 'a'; ch <= 'z'; ++ch) {
+                    if(ch == curr[i])
+                        continue;
+                    char tmp = curr[i];
+                    curr[i] = ch;
+                    if(freq[curr])
+                        q.push({curr, dist + 1}), freq[curr] = false;
+                    curr[i] = tmp;
+                }
             }
         }
         return 0;
-    }
-
-    bool differByOne(string &s1, string &s2) {
-        int cnt = 0;
-        for (int i = 0; i < s1.size(); ++i) {
-            if (s1[i] != s2[i]) {
-                ++cnt;
-                if (cnt == 2)
-                    return false;
-            }
-        }
-        return true;
     }
 };
