@@ -10,7 +10,7 @@ public:
         vector<int> ans;
         for (auto &el: freq)
             if (el.second == 2)
-                ans.emplace_back(el.first);
+                ans.push_back(el.first);
         return ans;
     }
 };
