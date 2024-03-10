@@ -13,27 +13,17 @@ public:
             if (curr == end)
                 return dist + 1;
             for (int i = 0; i < curr.size(); ++i) {
-                vector<string> marked;
-                for (auto &el: freq) {
-                    if (differByOne(curr, el.first))
-                        q.push({el.first, dist + 1}), marked.push_back(el.first);
+                for (char ch = 'a'; ch <= 'z'; ++ch) {
+                    if (ch == curr[i])
+                        continue;
+                    char tmp = curr[i];
+                    curr[i] = ch;
+                    if (freq.find(curr) != freq.end())
+                        q.push({curr, dist + 1}), freq.erase(curr);
+                    curr[i] = tmp;
                 }
-                for (auto &el: marked)
-                    freq.erase(el);
             }
         }
         return 0;
-    }
-
-    bool differByOne(const string &s1, const string &s2) {
-        int cnt = 0;
-        for (int i = 0; i < s1.size(); ++i) {
-            if (s1[i] != s2[i]) {
-                ++cnt;
-                if (cnt == 2)
-                    return false;
-            }
-        }
-        return true;
     }
 };
