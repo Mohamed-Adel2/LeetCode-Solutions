@@ -2,13 +2,13 @@ class Solution {
 public:
 
     int snakesAndLadders(vector<vector<int>> &board) {
-        vector<int> flattenedBoard;
-        int n = board.size();
+        int n = board.size(), idx = 0;
+        vector<int> flattenedBoard(n * n);
         bool keep = true;
         for (int i = n - 1; i >= 0; --i) {
             int start = (!keep ? n - 1 : 0), end = (!keep ? -1 : n), step = (!keep ? -1 : 1);
             for (int j = start; j != end; j += step)
-                flattenedBoard.push_back(board[i][j]);
+                flattenedBoard[idx++] = board[i][j];
             keep ^= 1;
         }
         return bfs(n, flattenedBoard);
