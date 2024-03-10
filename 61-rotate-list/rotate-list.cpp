@@ -18,7 +18,8 @@ public:
                 tail = node->next, node->next = NULL;
                 break;
             }
-            node = node->next, ++cnt;
+            node = node->next;
+            ++cnt;
         }
         return tail;
     }
