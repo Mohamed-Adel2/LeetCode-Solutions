@@ -12,7 +12,7 @@ public:
         }
         for (int i = 0; i < 26; ++i)
             for (int j = 0; j < freq[i]; ++j)
-                s[idx++] = (char) (i + 'a');
+                s[idx++] = i + 'a';
         return s;
     }
 };
