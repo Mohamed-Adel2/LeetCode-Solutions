@@ -15,7 +15,7 @@ public:
             solve(ret, curr, idx - 1, open, close - 1);
             curr.pop_back();
         }
-        if(open){
+        if(open > 0){
         curr.push_back('(');
         solve(ret, curr, idx - 1, open - 1, close);
         curr.pop_back();
