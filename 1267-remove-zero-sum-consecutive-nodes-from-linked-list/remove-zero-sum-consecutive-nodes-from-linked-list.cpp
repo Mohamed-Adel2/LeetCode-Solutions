@@ -7,10 +7,6 @@ public:
         freq[0] = true;
         int currSum = 0;
         while (node) {
-            if (node->val == 0) {
-                node = node->next;
-                continue;
-            }
             currSum += node->val;
             if (freq[currSum]) {
                 int target = currSum;
