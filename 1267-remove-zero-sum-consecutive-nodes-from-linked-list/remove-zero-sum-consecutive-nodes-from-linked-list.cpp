@@ -13,22 +13,16 @@ public:
                 currSum -= node->val;
                 while (!v.empty() && currSum != target)
                     freq[currSum] = false, currSum -= v.back(), v.pop_back();
-            } else {
-                v.push_back(node->val);
-                freq[currSum] = true;
-            }
+            } else
+                v.push_back(node->val), freq[currSum] = true;
             node = node->next;
         }
         if (v.empty())
             return NULL;
         node = head;
-        for (int i = 0; i < v.size(); ++i) {
-            node->val = v[i];
-            if (i == v.size() - 1)
-                node->next = NULL;
-            else
-                node = node->next;
-        }
+        for (int i = 0; i < v.size() - 1; ++i)
+            node->val = v[i], node = node->next;
+        node->val = v.back(), node->next = NULL;
         return head;
     }
 };
