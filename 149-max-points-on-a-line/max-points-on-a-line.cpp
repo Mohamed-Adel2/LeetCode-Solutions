@@ -7,12 +7,11 @@ public:
             for (int j = i + 1; j < points.size(); ++j) {
                 if (points[i][1] == points[j][1])
                     ++freq[100000];
-                else {
+                else
                     ++freq[(double)(points[i][0] - points[j][0]) / (points[i][1] - points[j][1])];
-                }
             }
-            for (auto i: freq)
-                ans = max(ans, i.second);
+            for (auto &el: freq)
+                ans = max(ans, el.second);
         }
         return ans + 1;
     }
