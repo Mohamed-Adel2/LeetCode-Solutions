@@ -6,16 +6,15 @@ public:
             swap(a, b);
         while (b.size() < a.size())
             b.push_back('0');
-        a.push_back('0'), b.push_back('0');
         string ans;
         int carry = 0;
         for (int i = 0; i < a.size(); ++i) {
             int sum = ((a[i] - '0') + (b[i] - '0') + carry);
-            ans += (sum % 2) + '0';
+            ans.push_back((sum % 2) + '0');
             carry = (sum > 1);
         }
-        if (ans.back() == '0')
-            ans.pop_back();
+        if (carry)
+            ans.push_back('1');
         reverse(ans.begin(), ans.end());
         return ans;
     }
