@@ -9,7 +9,7 @@ public:
                 ++zeroFreq[currSum];
             else
                 ++oneFreq[++currSum];
-            ans += (zeroFreq[currSum - goal] + oneFreq[currSum - (goal - 1)]);
+            ans += zeroFreq[currSum - goal] + oneFreq[currSum - (goal - 1)];
         }
         return ans;
     }
