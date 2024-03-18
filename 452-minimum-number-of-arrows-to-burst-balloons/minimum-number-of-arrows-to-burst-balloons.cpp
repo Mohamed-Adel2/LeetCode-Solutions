@@ -8,7 +8,8 @@ public:
             int mnEnd = points[i][1], j = i + 1;
             while (j < points.size() && points[j][0] <= mnEnd)
                 mnEnd = min(mnEnd, points[j++][1]);
-            i = j - 1;
+                --j;
+            i = j;
         }
         return ans;
     }
