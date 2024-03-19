@@ -4,12 +4,12 @@ public:
         vector<int> freq(26);
         int mxFreq = 0, cnt = 0;
         for (auto &el: tasks) {
-            ++freq[el - 'A'];
-            if (freq[el - 'A'] == mxFreq)
+            int &fr = ++freq[el - 'A'];
+            if (fr == mxFreq)
                 ++cnt;
-            else if (freq[el - 'A'] > mxFreq)
-                mxFreq = freq[el - 'A'], cnt = 1;
+            else if (fr > mxFreq)
+                mxFreq = fr, cnt = 1;
         }
-        return max((int)tasks.size(), (mxFreq - 1) * (n + 1) + cnt);
+        return max((int) tasks.size(), (mxFreq - 1) * (n + 1) + cnt);
     }
 };
