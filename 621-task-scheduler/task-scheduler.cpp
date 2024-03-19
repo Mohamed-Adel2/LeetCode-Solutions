@@ -4,8 +4,7 @@ public:
         vector<int> freq(26);
         int mxFreq = 0, cnt = 0;
         for (auto &el: tasks) {
-            int &fr = freq[el - 'A'];
-            ++fr;
+            int &fr = ++freq[el - 'A'];
             if (fr == mxFreq)
                 ++cnt;
             else if (fr > mxFreq)
