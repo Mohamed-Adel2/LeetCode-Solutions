@@ -6,12 +6,8 @@ public:
             return head;
         ListNode *curr = head, *next = head->next, *tmp;
         head->next = NULL;
-        while (next) {
-            tmp = next->next;
-            next->next = curr;
-            curr = next;
-            next = tmp;
-        }
+        while (next)
+            tmp = next->next, next->next = curr, curr = next, next = tmp;
         return curr;
     }
 };
