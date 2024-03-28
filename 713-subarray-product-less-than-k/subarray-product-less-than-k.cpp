@@ -6,15 +6,9 @@ public:
         int left = 0, right = -1, ans = 0, curr = 1, sz = nums.size();
         while (++right < sz) {
             curr *= nums[right];
-            if (curr < k) {
-                ans += right - left + 1;
-            } else {
-                while (left <= right && curr >= k) {
-                    curr /= nums[left++];
-                }
-                if (left <= right)
-                    ans += right - left + 1;
-            }
+            while (left <= right && curr >= k)
+                curr /= nums[left++];
+            ans += right - left + 1;
         }
         return ans;
     }
