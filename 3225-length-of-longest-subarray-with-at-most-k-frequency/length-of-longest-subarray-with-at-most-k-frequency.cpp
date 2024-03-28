@@ -6,14 +6,12 @@ public:
         while(right<nums.size()){
             ++freq[nums[right]];
             if(freq[nums[right]]>k){
-                ans = max(ans, right-left);
-                while(nums[left]!=nums[right]){
+                while(left < right && freq[nums[right]] > k)
                     --freq[nums[left++]];
-                }
-                --freq[nums[left++]];
             }
             ++right;
+            ans = max(ans, right-left);
         }
-        return max(ans, right - left);
+        return ans;
     }
 };
