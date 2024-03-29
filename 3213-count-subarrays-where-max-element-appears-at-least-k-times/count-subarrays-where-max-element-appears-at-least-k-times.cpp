@@ -11,8 +11,8 @@ public:
             if(nums[right] == mx)
                 el.push_back(right), ++cnt;
             if(cnt == k){
-                long long before = el.front() - left, after = sz - right - 1;
-                ans += before + after + before * after + 1;
+                int before = el.front() - left, after = sz - right - 1;
+                ans += before + after + (long)before * after + 1;
                 while(nums[left++] != mx);
                 --cnt;
                 el.pop_front();
