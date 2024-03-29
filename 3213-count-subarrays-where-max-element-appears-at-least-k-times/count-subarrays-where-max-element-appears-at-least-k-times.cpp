@@ -2,7 +2,7 @@ class Solution {
 public:
     long long countSubarrays(vector<int>& nums, int k) {
         int mx = 0, sz = nums.size();
-        long long ans = 0;
+        long ans = 0;
         for(int i = 0;i<sz;++i)
             mx = max(mx, nums[i]);
         int left = 0, right = 0, cnt = 0;
