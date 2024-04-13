@@ -8,7 +8,7 @@ public:
         for(auto &entry:mp)
             ++freq[entry.second];
         int mn;
-        for(int i = freq.size() - 1;i>=1;--i){
+        for(int i = freq.size() - 1;i >= 1;--i){
             k -= freq[i];
             if(k == 0){
                 mn = i;
