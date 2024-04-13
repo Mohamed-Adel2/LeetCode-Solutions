@@ -2,7 +2,7 @@ class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
         vector<int> left, right;
-        int pivot = nums[nums.size() / 2], pivotCnt = 0;
+        int pivot = nums[rand() % nums.size()], pivotCnt = 0;
         for(int i = 0;i<nums.size(); ++i){
             if(nums[i] == pivot)
                 ++pivotCnt;
