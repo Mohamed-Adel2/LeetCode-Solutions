@@ -3,7 +3,6 @@ public:
     int maximalRectangle(vector<vector<char>> &matrix) {
         int rows = matrix.size(), cols = matrix[0].size();
         vector<vector<int>> ones(rows, vector<int>(cols));
-        // calculate the longest consecutive ones from each index
         for (int i = 0; i < rows; ++i) {
             int next = cols;
             for (int j = cols - 1; j >= 0; --j) {
