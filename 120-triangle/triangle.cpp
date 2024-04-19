@@ -5,9 +5,7 @@ public:
 
     int minimumTotal(vector<vector<int>> &triangle) {
         n = triangle.size(), m = triangle[0].size();
-        dp.resize(n + 2);
-        for(int i = 0;i<n+2;++i)
-            dp[i].resize(i+2, 1e9);
+        dp.resize(n + 2, vector<int>(n + 2, 1e9));
         return solve(0, 0, triangle);
     }
 
