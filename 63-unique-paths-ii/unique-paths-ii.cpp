@@ -2,10 +2,10 @@ class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>> &g) {
         int n = g.size(), m = g[0].size();
-        vector<vector<long long>> grid(n, vector<long long>(m));
+        vector<vector<long long>> grid(n);
         for(int i = 0;i<n;++i)
             for(int j= 0;j<m;++j)
-                grid[i][j] = g[i][j];
+                grid[i].push_back(g[i][j]);
         if(grid[n-1][m-1] == 1 || grid[0][0] == 1)
             return 0;
         grid[n - 1][m - 1] = 1;
