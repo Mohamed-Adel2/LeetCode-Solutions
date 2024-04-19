@@ -1,21 +1,9 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
-    int n, m;
-
     int minimumTotal(vector<vector<int>> &triangle) {
-        n = triangle.size(), m = triangle[0].size();
-        dp.resize(n + 2, vector<int>(n + 2, 1e9));
-        return solve(0, 0, triangle);
-    }
-
-    int solve(int row, int col, vector<vector<int>> &triangle) {
-        if (row >= n)
-            return 0;
-        int &ret = dp[row][col];
-        if (ret != 1e9)
-            return ret;
-        ret = min(solve(row + 1, col, triangle), solve(row + 1, col + 1, triangle)) + triangle[row][col];
-        return ret;
+        for (int i = triangle.size() - 2; i >= 0; --i)
+            for (int j = 0; j < triangle[i].size(); ++j)
+                triangle[i][j] += min(triangle[i + 1][j], triangle[i + 1][j + 1]);
+        return triangle[0][0];
     }
 };
