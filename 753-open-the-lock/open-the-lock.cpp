@@ -5,7 +5,7 @@ public:
         unordered_map<string, int> visited;
         for (auto &s: deadends)
             visited[s] = 1;
-            if(visited["0000"])
+            if(visited.count("0000"))
                 return -1;
         q.push("0000"), visited["0000"] = 0;
         while (!q.empty()) {
@@ -16,7 +16,7 @@ public:
             q.pop();
             vector<string> nexts = next(curr);
             for (auto &s: nexts) {
-                if (!visited[s])
+                if (!visited.count(s))
                     q.push(s), visited[s] = steps + 1;
             }
         }
