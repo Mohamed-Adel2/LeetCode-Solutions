@@ -1,23 +1,21 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
-    int sz;
     int longestIdealString(string s, int k) {
-        sz = s.size();
-        dp.resize(sz + 2, vector<int>(28, -1));
-        return solve(0, 27, k, s);
+        int sz = s.size();
+        vector<int> v(26, 0);
+        for (int i = 0; i < sz; ++i) {
+            int idx = s[i] - 'a';
+            int lower = max(idx - k, 0), upper = min(idx + k, 25);
+            v[idx] = v[idx] + 1;
+            for (int j = lower; j <= upper; ++j) {
+                if (j == idx)
+                    continue;
+                v[idx] = max(v[idx], v[j] + 1);
+            }
+        }
+        int ans = 1;
+        for (auto &i: v)
+            ans = max(ans, i);
+        return ans;
     }
-
-    int solve(int idx, int prv, int k, string& s){
-        if(idx >= sz)
-            return 0;
-        int& ret = dp[idx][prv];
-        if(~ret)
-            return ret;
-        ret = solve(idx+1, prv, k, s);
-        if(prv == 27 || abs((s[idx] - 'a') - prv) <= k)
-            ret = max(ret, solve(idx+1, s[idx] - 'a', k, s) + 1);
-        return ret;
-    }
-
 };
