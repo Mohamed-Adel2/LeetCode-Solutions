@@ -1,31 +1,31 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
-    int n;
-    int minFallingPathSum(vector<vector<int>>& grid) {
-        n = grid.size();
-        dp.resize(n+1, vector<int>(n+1, -1));
-        int ans = 1e9;
-        for(int i = 0; i<n;++i)
-            ans = min(ans, solve(0, i, grid));
+    int minFallingPathSum(vector<vector<int>> &grid) {
+        int n = grid.size();
+        if (n == 1)
+            return grid[0][0];
+        for (int i = 0; i < n - 1; ++i) {
+            int firstMn, secondMn;
+            if (grid[i][0] < grid[i][1])
+                firstMn = 0, secondMn = 1;
+            else
+                firstMn = 1, secondMn = 0;
+            for (int j = 2; j < n; ++j) {
+                if (grid[i][j] <= grid[i][firstMn])
+                    secondMn = firstMn, firstMn = j;
+                else if (grid[i][j] < grid[i][secondMn])
+                    secondMn = j;
+            }
+            for (int j = 0; j < n; ++j) {
+                if (j == firstMn)
+                    grid[i + 1][j] += grid[i][secondMn];
+                else
+                    grid[i + 1][j] += grid[i][firstMn];
+            }
+        }
+        int ans = 1e6;
+        for (int j = 0; j < n; ++j)
+            ans = min(grid[n - 1][j], ans);
         return ans;
     }
-
-    int solve(int r, int c, vector<vector<int>>& grid){
-        if(r == n)
-            return 0;
-        int &ret = dp[r][c];
-        if(~ret)
-            return ret;
-        ret = grid[r][c];
-        int ans = 1e9;
-        for(int i = 0;i < n;++i){
-            if(i == c)
-                continue;
-            ans = min(ans ,solve(r + 1, i, grid));
-        }
-        ret += (ans == 1e9 ? 0 : ans);
-        return ret;
-    }
-
 };
