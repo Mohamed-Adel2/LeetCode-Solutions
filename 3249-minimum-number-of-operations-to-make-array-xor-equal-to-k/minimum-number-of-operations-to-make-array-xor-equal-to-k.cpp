@@ -5,9 +5,8 @@ public:
         for(auto &i : nums)
             xorr ^= i;
         int ans = 0;
-        int kBits = __builtin_popcount(k), xorBits = __builtin_popcount(xorr);
-        ans += kBits - __builtin_popcount(k & xorr);
-        ans += xorBits - __builtin_popcount(k & xorr);
+        int kBits = __builtin_popcount(k), xorBits = __builtin_popcount(xorr), anding = __builtin_popcount(k & xorr);
+        ans = (kBits - anding) + (xorBits - anding);
         return ans;
     }
 };
