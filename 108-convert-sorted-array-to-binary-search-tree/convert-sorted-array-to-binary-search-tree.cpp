@@ -18,12 +18,7 @@ public:
     TreeNode* constructSubTree(vector<int>& nums, int startIdx, int endIdx){
         if(startIdx > endIdx)
             return NULL;
-        if(startIdx == endIdx)
-            return new TreeNode(nums[startIdx]);
         int mid = (startIdx + endIdx) / 2;
-        TreeNode* root = new TreeNode(nums[mid]);
-        root -> left = constructSubTree(nums, startIdx, mid - 1);
-        root -> right = constructSubTree(nums, mid + 1, endIdx);
-        return root;
+        return new TreeNode(nums[mid], constructSubTree(nums, startIdx, mid - 1), constructSubTree(nums, mid + 1, endIdx));
     }
 };
