@@ -12,19 +12,19 @@ public:
         }
         sort(v.begin(), v.end(), compare);
         int curr = w, idx = 0;
-        multiset<int> available;
+        priority_queue<int> available;
         for (; idx < n; ++idx) {
             if (v[idx].first <= curr)
-                available.insert(v[idx].second);
+                available.push(v[idx].second);
             else
                 break;
         }
         while (k-- && !available.empty()) {
-            curr += *available.rbegin();
-            available.erase(--available.end());
+            curr += available.top();
+            available.pop();
             for (; idx < n; ++idx) {
                 if (v[idx].first <= curr)
-                    available.insert(v[idx].second);
+                    available.push(v[idx].second);
                 else
                     break;
             }
