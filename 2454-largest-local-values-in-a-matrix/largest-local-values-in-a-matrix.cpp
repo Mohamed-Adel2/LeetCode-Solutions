@@ -11,7 +11,7 @@ public:
     }
 
     int getMax(int row, int col, vector<vector<int>>& grid){
-        int ret= 0;
+        int ret = 0;
         for(int i = 0; i < 9; ++i)
             ret = max(ret, grid[row + dx[i]][col + dy[i]]);
         return ret;
