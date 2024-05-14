@@ -16,7 +16,7 @@ class Solution {
             if(valid(row + dx[i], col + dy[i], n, m) && grid[row + dx[i]][col + dy[i]] > 0)
                 ret = Math.max(ret, dfs(grid, row + dx[i], col + dy[i], n, m));
         grid[row][col] = val;      
-        return ret + val;
+        return val + ret;
     }
 
     public boolean valid(int row, int col, int n, int m){
