@@ -1,32 +1,38 @@
 class Solution {
 public:
+    vector<vector<string>> ans;    
+    void solve(string& s, int i, vector<string>& subAns, string& sub){
+        if(i >= s.size()){
+            if(!sub.empty()){
+                if(isPalindrome(sub)){
+                    subAns.push_back(sub);
+                    ans.push_back(subAns);
+                    subAns.pop_back();
+                }
+                return;
+            }
+            ans.push_back(subAns);
+            return;
+        }
+
+        if(!sub.empty() && isPalindrome(sub)){
+            subAns.push_back(sub);
+            string temp;
+            temp += s[i];
+            solve(s, i+1, subAns, temp);
+            subAns.pop_back();
+        }
+
+        sub.push_back(s[i]);
+        solve(s, i + 1, subAns, sub);
+        sub.pop_back();
+    }
     vector<vector<string>> partition(string s) {
         int sz = s.size();
-        set<vector<string>> ans;
-        for(int msk = 0; msk < (1 << sz); ++msk){
-            string sub="";
-            vector<string> subAns;
-            for(int j = 0; j<s.size(); ++j){
-                sub.push_back(s[j]);
-                if(msk & (1<<j)){
-                    subAns.push_back(sub);
-                    sub = "";
-                }
-            }
-            if(!sub.empty()){
-                subAns.push_back(sub);
-            }
-            bool flg=true;
-            for(auto s : subAns){
-                if(!isPalindrome(s)) flg = false;
-            }
-
-            if(flg) ans.insert(subAns);
-        }
-        vector<vector<string>> ret;
-        for(auto v : ans)
-            ret.push_back(v);
-        return ret;
+        vector<string> subAns;
+        string sub;
+        solve(s, 0, subAns, sub);
+        return ans;
     }
 
     bool isPalindrome(string s){
