@@ -3,27 +3,18 @@ public:
     vector<vector<string>> ans;    
     void solve(string& s, int i, vector<string>& subAns, string& sub){
         if(i >= s.size()){
-            if(!sub.empty()){
-                if(isPalindrome(sub)){
-                    subAns.push_back(sub);
-                    ans.push_back(subAns);
-                    subAns.pop_back();
-                }
-                return;
-            }
-            ans.push_back(subAns);
+            if(sub.empty())
+                ans.push_back(subAns);
             return;
         }
 
-        if(!sub.empty() && isPalindrome(sub)){
+        sub.push_back(s[i]);
+        if(isPalindrome(sub)){
             subAns.push_back(sub);
-            string temp;
-            temp += s[i];
-            solve(s, i+1, subAns, temp);
+            string tmp;
+            solve(s, i+1, subAns, tmp);
             subAns.pop_back();
         }
-
-        sub.push_back(s[i]);
         solve(s, i + 1, subAns, sub);
         sub.pop_back();
     }
