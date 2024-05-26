@@ -1,9 +1,8 @@
 class Solution {
 public:
-    vector<vector<vector<int>>> dp;
-
+    int dp[100005][2][3];
     int checkRecord(int n) {
-        dp = vector<vector<vector<int>>>(n, vector<vector<int>>(2, vector<int>(3, -1)));
+        memset(dp,-1,sizeof(dp));
         return solve(0, false, 0, n);
     }
 
