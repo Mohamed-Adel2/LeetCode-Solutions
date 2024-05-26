@@ -3,7 +3,7 @@ public:
     vector<vector<vector<int>>> dp;
 
     int checkRecord(int n) {
-        dp.resize(n + 2, vector<vector<int>>(2, vector<int>(3, -1)));
+        dp = vector<vector<vector<int>>>(n, vector<vector<int>>(2, vector<int>(3, -1)));
         return solve(0, false, 0, n);
     }
 
