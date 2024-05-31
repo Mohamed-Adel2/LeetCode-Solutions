@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        long long xorSum = 0;
-        int first = 0, second = 0;
+        int xorSum = 0, first = 0, second = 0;
         for(auto &num : nums)
             xorSum ^= num;
         for(int i = 0; i < 32; ++i){
