@@ -22,8 +22,7 @@ public:
                 parentNode -> left = childNode;
             else
                 parentNode -> right = childNode;
-            isChild[child] = true;
-            isChild[parent] |= false;
+            isChild[child] = true, isChild[parent] |= false;
         }
         for(auto &i : isChild)
             if(i.second == false)
