@@ -1,10 +1,8 @@
 class Solution {
 public:
     int dp[1002][1002][4][2];
-    //vector<vector<vector<vector<int>>>> dp;
     int numTeams(vector<int>& rating) {
         int sz = rating.size();
-        //dp.resize(sz + 2, vector<int>(sz , vector<int>(4, vector<int>(2, -1))));
         memset(dp, -1, sizeof(dp));
         return solve(0, 0, 0, true, rating, sz);
     }
