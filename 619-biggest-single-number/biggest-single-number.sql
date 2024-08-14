@@ -1,4 +1,4 @@
-SELECT COALESCE((
+SELECT IFNULL((
     SELECT num
     FROM MyNumbers
     GROUP BY num
