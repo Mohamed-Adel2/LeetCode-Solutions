@@ -6,4 +6,4 @@ WITH cte AS(
 SELECT
     customer_id
 FROM cte
-WHERE cnt = (SELECT count(*) FROM Product)
+WHERE cnt IN (SELECT count(*) FROM Product)
