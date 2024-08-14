@@ -2,5 +2,14 @@ SELECT
     x,
     y,
     z,
-    IF((x + y) > z && (y + z) > x && (x + z) > y, 'Yes', 'No') AS triangle
-FROM Triangle;
+    'Yes' AS Triangle
+FROM Triangle
+WHERE x + y > z && x + z > y && y + z > x
+UNION
+SELECT
+    x,
+    y,
+    z,
+    'No' AS Triangle
+FROM Triangle
+WHERE x + y <= z || x + z <= y || y + z <= x
