@@ -3,4 +3,4 @@ SELECT
     patient_name,
     conditions
 FROM Patients
-WHERE INSTR(conditions, 'DIAB1') = 1 || INSTR(conditions, ' DIAB1') > 0;
+WHERE conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%';
