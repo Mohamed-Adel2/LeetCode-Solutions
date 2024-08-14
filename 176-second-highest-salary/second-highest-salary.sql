@@ -1,4 +1,4 @@
 SELECT
-    IFNULL(MAX(salary), NULL) AS SecondHighestSalary
+    MAX(salary) AS SecondHighestSalary
 FROM Employee
 WHERE salary != (SELECT MAX(salary) FROM Employee)
