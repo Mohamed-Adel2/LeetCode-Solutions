@@ -25,7 +25,7 @@ public:
             for(int i = pIdx; i < p.size(); ++i)
                 if(p[i].size() != 2)
                     return 0;
-            return 1;
+            return dp[sIdx][pIdx] = 1;
         }
         else if(pIdx == p.size())
             return 0;
