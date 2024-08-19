@@ -14,7 +14,7 @@ public:
         if(~ret)
             return ret;
         ret = solve(idx + 1, s, dp);
-        if(idx + 1 < s.size() && (s[idx] == '1' || (s[idx] == '2' && s[idx + 1] <= '6')))
+        if(idx + 1 < s.size() && s.substr(idx, 2) <= "26")
             ret += solve(idx + 2, s, dp);
         return ret;
     }
