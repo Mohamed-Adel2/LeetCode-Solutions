@@ -5,10 +5,9 @@ public:
         while(right < nums.size()){
             if(nums[right] == 0 && zeros == k)
                 zeros -= (nums[left++] == 0);
-            else {
-                ans = max(ans, right - left + 1);
+            else
                 zeros += (nums[right] == 0), ++right;
-            }
+            ans = max(ans, right - left);
         }
         return ans;
     }
